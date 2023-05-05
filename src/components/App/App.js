@@ -1,6 +1,7 @@
 import css from './App.module.css'
-import ContactsForm from '../ContactsForm/ContactsForm';
 import React, { Component } from "react";
+import ContactsForm from '../ContactsForm/ContactsForm';
+import ContactsList from '../ContactsList/ContactsList';
 
 
 class App extends Component {
@@ -13,14 +14,19 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact]
     }))
+  }
 
-    console.log(this.state.contacts)
+  onHandleDelContact = (contactId) => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(el => el.id !== contactId)
+    }))
   }
 
   render() {
     return (
       <div className={css.container}>
         <ContactsForm onSubmit={this.onHandleAddContact} />
+        <ContactsList contacts={this.state.contacts} onDelete={this.onHandleDelContact} />
       </div>
     );
   }

@@ -1,14 +1,17 @@
 import React, { Component } from "react";
+import { nanoid } from 'nanoid'
 import css from './ContactsForm.module.css';
 
 class ContactsForm extends Component {
     state = {
+        id: '',
         name: '',
         number: '',
     }
 
     onInputChange = e => {
         this.setState({[e.currentTarget.name]: e.currentTarget.value})
+        this.setState({id: nanoid()})
     }
 
     onFormSubmit = e => {
@@ -16,13 +19,13 @@ class ContactsForm extends Component {
 
         this.props.onSubmit(this.state)
         
-        this.setState({name: '', number: ''})
+        this.setState({id: '', name: '', number: ''})
     }
 
     render() {
         return (
             <>
-                <h1 className={css.title}>Add new contact</h1>
+                <h2 className={css.title}>Add new contact</h2>
                 <form className={css.form} autoComplete="off" onSubmit={e => this.onFormSubmit(e)}>
                     <div className={css.inputField}>
                         <input

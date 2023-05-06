@@ -5,13 +5,11 @@ const ContactsList = ({contacts, onDelete, children, filter}) => {
         <div className={css.container}>
             <h2 className={css.title}>My Contacts</h2>
             {children}
-            <p>Filter: {filter}</p>
             <ul className={css.list}>
-                {contacts.map(({id, name, number}) => {
-                    return (
-                        <ContactsItem key={id} id={id} name={name} number={number} onDelete={onDelete}/>
-                    )
-                })}
+                {contacts.filter(({name}) => name.toLowerCase().includes(filter.toLowerCase()))
+                .map(({id, name, number}) => (
+                    <ContactsItem key={id} id={id} name={name} number={number} onDelete={onDelete}/>
+                ))}
             </ul>
         </div>
     )

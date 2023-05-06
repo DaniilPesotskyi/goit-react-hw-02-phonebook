@@ -16,6 +16,11 @@ class App extends Component {
   }
 
   onHandleAddContact = (contact) => {
+    if(this.state.contacts.some(i => i.name === contact.name)) {
+      alert(`${contact.name} is already exist!`)
+      return;
+    }
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact]
     }))

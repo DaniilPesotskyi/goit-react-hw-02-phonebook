@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid'
 import css from './ContactsForm.module.css';
 
 class ContactsForm extends Component {
+    
     state = {
         id: '',
         name: '',
